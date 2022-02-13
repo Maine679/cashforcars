@@ -1,0 +1,168 @@
+//Подключаем шрифты к проекту
+//@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+//Здесь у нас собранные svg в шрифт
+@import "icons";
+
+
+$mainColor: #252851; //Цвет хедера
+$textColorHeaderDark: #126FB8; //Цвет текста заголовков темных (на светлом фоне)
+$textColorHeaderLight: #FFFFFF; //Цвет текста заголовков светлых (на тёмном фоне)
+
+
+
+//Переменная для хранения имени шрифта
+$fontFamily: 'Manrope';
+
+
+$widthHeader: 104; //Высота хедера
+$widthTextMenu: 22; //Высота текста меню (для расчета положения меню в хедере)
+
+//Переменные размера экрана
+$minWidth: 320px;
+$maxWidth: 1920;
+$MaxWidthContainer: 1022;
+
+$md1: $MaxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+* { //Сброс настроек браузера
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    height: $widthHeader+px;
+    background: $mainColor;
+    width: 100%;
+}
+
+.extend-grid-line { //класс для расширения других блоков
+    max-width: $MaxWidthContainer+px;
+    display: grid;
+
+    margin:auto;
+    justify-content: center;
+
+    grid-template-columns: repeat(auto-fill,minmax(1fr,52px));
+
+    grid-column-gap: 32px;
+    grid-row-gap: 10px;
+
+    //Ширина блока grid для полноэкранного и для смартфона
+    //grid-gap: 32px 10px;
+    //grid-gap: 24px 10px;
+
+}
+//Здесь вся верстка хедера!
+.header-content {
+    @extend .extend-grid-line;
+
+    font-family: $fontFamily, sans-serif;
+    max-width: $md1+px;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+
+    .logo {
+        z-index: 100;
+        float: left;
+        margin: 15px;
+    }
+
+    .menu-full {
+
+        margin-top: $widthHeader/2-$widthTextMenu/2+px;
+        margin-left: auto;
+        margin-right: 0;
+        padding: 0;
+
+        color: $textColorHeaderLight;
+
+        text-decoration: none;
+
+        //Блок навигации (меню)
+        #navbar {
+            list-style-type: none;
+            color: $textColorHeaderLight;
+            text-align: center;
+
+            a {
+                margin-left: 10px;
+                text-decoration: none;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 140%;
+                color: $textColorHeaderLight;
+                display: inline-block;
+            }
+            a:hover {
+                font-weight: bold;
+            }
+
+            li {
+                display: inline;
+                color: $textColorHeaderLight;
+            }
+        }
+    }
+}
+
+body {
+    background-color: #cbd5e0;
+    font: $fontFamily;
+}
+
+//Основной контейнер где будут находится данные
+.wrapper {
+    display: grid;
+    @extend .extend-grid-line;
+
+    .block-1 {
+        grid-area: 1 / 1 / 1 / 7;
+
+        //display: flex;
+        //flex-direction: column;
+        //align-items: flex-start;
+
+        //position: absolute;
+        //width: 493px;
+        //height: 350px;
+        //left: 210px;
+        //top: 182px;
+
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+
+        h1 {
+
+            font-family: $fontFamily, ExtraBold;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 48px;
+            line-height: 60px;
+
+            color: $textColorHeaderDark;
+
+        }
+        p {
+            font-family: $fontFamily, Regular;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 150%;
+
+            color: $mainColor;
+        }
+    }
+    .block-2 {
+        grid-area: 1 / 7 / 1 / 13;
+    }
+}
+
+//Тестовые блоки что бы видеть как будет делиться экран
+.test_class {
+    background-color: #f7c548;
+}
