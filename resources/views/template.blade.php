@@ -32,10 +32,10 @@
 
 <div class="wrapper">
 
-{{--    <div class="block-1">--}}
-{{--        <h1>Enter your vehicle details to receive a free valuation.</h1>--}}
-{{--        <p>If your vehicle has <b>less than 100,000 miles</b> enter your vehicle and contact details and we will contact you with a cash valuation within 24 hours.</p>--}}
-{{--    </div>--}}
+    <div class="block-1">
+        <h1>Enter your vehicle details to receive a free valuation.</h1>
+        <p>If your vehicle has <b>less than 100,000 miles</b> enter your vehicle and contact details and we will contact you with a cash valuation within 24 hours.</p>
+    </div>
     <div class="block-2">Corporis, sint?</div>
     <div class="test_class">Maxime, omnis?</div>
     <div class="test_class">Libero, tenetur?</div>
