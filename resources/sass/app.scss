@@ -15,8 +15,8 @@ $textColorHeaderLight: #FFFFFF; //Цвет текста заголовков с�
 $fontFamily: 'Manrope';
 
 
-$widthHeader: 104; //Высота хедера
-$widthTextMenu: 22; //Высота текста меню (для расчета положения меню в хедере)
+$heightHeader: 104; //Высота хедера
+$heightTextMenu: 22; //Высота текста меню (для расчета положения меню в хедере)
 
 //Переменные размера экрана
 $minWidth: 320px;
@@ -35,7 +35,7 @@ $md4: 479.98;
 }
 
 .header {
-    height: $widthHeader+px;
+    height: $heightHeader+px;
     background: $mainColor;
     width: 100%;
 }
@@ -47,15 +47,9 @@ $md4: 479.98;
     margin:auto;
     justify-content: center;
 
-    grid-template-columns: repeat(auto-fill,minmax(1fr,52px));
+    grid-template-columns: repeat(auto-fit,minmax($MaxWidthContainer/2+px, 1fr));
 
-    grid-column-gap: 32px;
     grid-row-gap: 10px;
-
-    //Ширина блока grid для полноэкранного и для смартфона
-    //grid-gap: 32px 10px;
-    //grid-gap: 24px 10px;
-
 }
 //Здесь вся верстка хедера!
 .header-content {
@@ -73,9 +67,9 @@ $md4: 479.98;
 
     .menu-full {
 
-        margin-top: $widthHeader/2-$widthTextMenu/2+px;
+        margin-top: $heightHeader/2-$heightTextMenu/2+px;
         margin-left: auto;
-        margin-right: 0;
+        margin-right: 10px;
         padding: 0;
 
         color: $textColorHeaderLight;
@@ -115,55 +109,144 @@ body {
     font: $fontFamily;
 }
 
-//Основной контейнер где будут находится данные
-.wrapper {
-    display: grid;
-    @extend .extend-grid-line;
+.first-screen {
+    //Первый экран. Для того что бы градиентный фон лёг корректно.
+    background: linear-gradient(79.95deg, rgba(18, 111, 184, 0.2) 2.62%, rgba(18, 111, 184, 0) 98.24%);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-    .block-1 {
-        //grid-area: 1 / 1 / 1 / 7;
-
-        grid-start-column: 1 / -1;
-
-        //display: flex;
-        //flex-direction: column;
-        //align-items: flex-start;
-
-        //position: absolute;
-        //width: 493px;
-        //height: 350px;
-        //left: 210px;
-        //top: 182px;
-
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    //Основной контейнер где будут находится данные
+    .wrapper {
+        display: grid;
+        @extend .extend-grid-line;
+        height: 100vh;
 
 
-        h1 {
 
-            font-family: $fontFamily, ExtraBold;
-            font-style: normal;
-            font-weight: 800;
-            font-size: 48px;
-            line-height: 60px;
 
-            color: $textColorHeaderDark;
+        .for-details {
+            margin-left: 5px;
+            margin-right: 5px;
+
+            margin-top: 182px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+
+            h1 {
+
+                font-family: $fontFamily, ExtraBold;
+                font-style: normal;
+                font-weight: 800;
+                font-size: 48px;
+                line-height: 60px;
+
+                color: $textColorHeaderDark;
+
+            }
+
+            p {
+                font-family: $fontFamily, Regular;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 150%;
+
+                color: $mainColor;
+            }
+        }
+
+        .form-registration {
+            margin-left: auto;
+            margin-right: 5px;
+
+            height: 215px;
+            width: 407px;
+            margin-top: 182px;
+
+            align-content: center;
+            justify-items: end;
+
+
+            //Чекбекс с его позицией и настроечками
+            .checkboxes {
+                padding: 5px 10px;
+                margin-top: 13px;
+                width: auto;
+
+                height: 48px;
+                font-family: $fontFamily, Regular;
+                color: $mainColor;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 150%;
+
+            }
+            .checkbox-group {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-bottom: 10px;
+            }
+            .checkbox {
+                cursor: pointer;
+
+            }
+            .label {
+                cursor: pointer;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            #registration {
+
+                padding: 9px 90px;
+
+                width: 406px;
+                height: 66px;
+
+                background: #FFFFFF;
+                box-shadow: 0px 4px 8px rgba(37, 40, 81, 0.1);
+                border-radius: 8px;
+
+                color: blue;
+                font-size: 1.5em;
+                text-align: center;
+            }
+
+            input, textarea {
+                outline: none;
+                border: none;
+
+            }
+
+            ::placeholder {
+                color: blue;
+                font-size: 1.5em;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .button-reg {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                //align-items: center;
+                padding: 16px 40px;
+
+                margin-top: 33px;
+
+                width: 407px;
+                height: 48px;
+
+                background: #F7C548;
+                box-shadow: 0px 4px 8px rgba(37, 40, 81, 0.1);
+                border-radius: 46px;
+            }
 
         }
-        p {
-            font-family: $fontFamily, Regular;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 24px;
-            line-height: 150%;
-
-            color: $mainColor;
-        }
-    }
-    .block-2 {
-        grid-area: 1 / 7 / 1 / 13;
     }
 }
-
 //Тестовые блоки что бы видеть как будет делиться экран
 .test_class {
     background-color: #f7c548;

@@ -268,13 +268,12 @@
   width: 100%;
 }
 
-.extend-grid-line, .wrapper, .header-content {
+.extend-grid-line, .first-screen .wrapper, .header-content {
   max-width: 1022px;
   display: grid;
   margin: auto;
   justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(1fr, 52px));
-  grid-column-gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(511px, 1fr));
   grid-row-gap: 10px;
 }
 
@@ -291,7 +290,7 @@
 .header-content .menu-full {
   margin-top: 41px;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: 10px;
   padding: 0;
   color: #FFFFFF;
   text-decoration: none;
@@ -324,14 +323,21 @@ body {
   font: "Manrope";
 }
 
-.wrapper {
-  display: grid;
-}
-.wrapper .block-1 {
-  grid-start-column: 1/-1;
+.first-screen {
+  background: linear-gradient(79.95deg, rgba(18, 111, 184, 0.2) 2.62%, rgba(18, 111, 184, 0) 98.24%);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-.wrapper .block-1 h1 {
+.first-screen .wrapper {
+  display: grid;
+  height: 100vh;
+}
+.first-screen .wrapper .for-details {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 182px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.first-screen .wrapper .for-details h1 {
   font-family: "Manrope", ExtraBold;
   font-style: normal;
   font-weight: 800;
@@ -339,7 +345,7 @@ body {
   line-height: 60px;
   color: #126FB8;
 }
-.wrapper .block-1 p {
+.first-screen .wrapper .for-details p {
   font-family: "Manrope", Regular;
   font-style: normal;
   font-weight: normal;
@@ -347,8 +353,86 @@ body {
   line-height: 150%;
   color: #252851;
 }
-.wrapper .block-2 {
-  grid-area: 1/7/1/13;
+.first-screen .wrapper .form-registration {
+  margin-left: auto;
+  margin-right: 5px;
+  height: 215px;
+  width: 407px;
+  margin-top: 182px;
+  align-content: center;
+  justify-items: end;
+}
+.first-screen .wrapper .form-registration .checkboxes {
+  padding: 5px 10px;
+  margin-top: 13px;
+  width: auto;
+  height: 48px;
+  font-family: "Manrope", Regular;
+  color: #252851;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+.first-screen .wrapper .form-registration .checkbox-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.first-screen .wrapper .form-registration .checkbox {
+  cursor: pointer;
+}
+.first-screen .wrapper .form-registration .label {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.first-screen .wrapper .form-registration #registration {
+  padding: 9px 90px;
+  width: 406px;
+  height: 66px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 8px rgba(37, 40, 81, 0.1);
+  border-radius: 8px;
+  color: blue;
+  font-size: 1.5em;
+  text-align: center;
+}
+.first-screen .wrapper .form-registration input, .first-screen .wrapper .form-registration textarea {
+  outline: none;
+  border: none;
+}
+.first-screen .wrapper .form-registration ::-moz-placeholder {
+  color: blue;
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+.first-screen .wrapper .form-registration :-ms-input-placeholder {
+  color: blue;
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+.first-screen .wrapper .form-registration ::placeholder {
+  color: blue;
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+.first-screen .wrapper .form-registration .button-reg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 16px 40px;
+  margin-top: 33px;
+  width: 407px;
+  height: 48px;
+  background: #F7C548;
+  box-shadow: 0px 4px 8px rgba(37, 40, 81, 0.1);
+  border-radius: 46px;
 }
 
 .test_class {
