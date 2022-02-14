@@ -19,14 +19,14 @@ $heightHeader: 104; //Высота хедера
 $heightTextMenu: 22; //Высота текста меню (для расчета положения меню в хедере)
 
 //Переменные размера экрана
-$minWidth: 320px;
+$minWidth: 320;
 $maxWidth: 1920;
 $MaxWidthContainer: 1022;
 
 $md1: $MaxWidthContainer + 12;
-$md2: 991.98;
+$md2: 1021;
 $md3: 767.98;
-$md4: 479.98;
+//$md4: 479.98;
 
 * { //Сброс настроек браузера
     margin: 0;
@@ -102,12 +102,189 @@ $md4: 479.98;
             }
         }
     }
+
+
+
+    //Бургер меню (код из инета, думаю это не слишком принципиально).
+    .hamburger-menu {
+        z-index: 101;
+        #menu__toggle {
+            opacity: 0;
+        }
+
+        .menu__btn {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .menu__btn > span,
+        .menu__btn > span::before,
+        .menu__btn > span::after {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #616161;
+        }
+
+        .menu__btn > span::before {
+            content: '';
+            top: -8px;
+        }
+
+        .menu__btn > span::after {
+            content: '';
+            top: 8px;
+        }
+
+        .menu__box {
+            display: block;
+            position: fixed;
+            visibility: hidden;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100%;
+            margin: 0;
+            padding: 80px 0;
+            list-style: none;
+            text-align: center;
+            background-color: #ECEFF1;
+            box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+        }
+
+        .menu__item {
+            display: block;
+            padding: 12px 24px;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .menu__item:hover {
+            background-color: #CFD8DC;
+        }
+
+        #menu__toggle:checked ~ .menu__btn > span {
+            transform: rotate(45deg);
+        }
+        #menu__toggle:checked ~ .menu__btn > span::before {
+            top: 0;
+            transform: rotate(0);
+        }
+        #menu__toggle:checked ~ .menu__btn > span::after {
+            top: 0;
+            transform: rotate(90deg);
+        }
+        #menu__toggle:checked ~ .menu__box {
+            visibility: visible;
+            left: 0;
+        }
+
+        .menu__btn > span,
+        .menu__btn > span::before,
+        .menu__btn > span::after {
+            transition-duration: .25s;
+        }
+        .menu__box {
+            transition-duration: .25s;
+        }
+        .menu__item {
+            transition-duration: .25s;
+        }
+    }
 }
 
 body {
     background-color: #cbd5e0;
     font: $fontFamily;
 }
+
+@media (max-width: $md3+px) {
+    .header-content {
+        .menu-full {
+            display: none;
+        }
+    }
+}
+@media (min-width:$md3+0.02+px) {
+    .header-content {
+        .hamburger-menu {
+            display: none;
+        }
+    }
+}
+@media (max-width: $md2+px) {
+
+    .first-screen {
+        .wrapper {
+            justify-items: center;
+            align-content: center;
+            margin: 0 auto auto auto;
+            padding-left: 5px;
+            padding-right: 5px;
+
+            .for-details {
+                margin: 15px;
+                justify-items: center;
+            }
+
+            .form-registration {
+                height: 215px;
+                width: 407px;
+                margin: 15px;
+                align-content: center;
+                justify-items: auto;
+            }
+        }
+    }
+    second-screen {
+        .wrapper {
+            .div-block {
+                .for-description {
+                    padding-top: 0;
+                    padding-right: 15px;
+                    padding-left: 15px;
+                    margin: 0 auto;
+
+                }
+            }
+        }
+    }
+}
+
+//Переиспользование
+@mixin h1 {
+    font-family: $fontFamily, Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    height: 32px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    @content;
+}
+@mixin p {
+    font-family: $fontFamily, Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 150%;
+
+    @content;
+}
+
 
 .first-screen {
     //Первый экран. Для того что бы градиентный фон лёг корректно.
@@ -118,8 +295,7 @@ body {
     .wrapper {
         display: grid;
         @extend .extend-grid-line;
-        height: 100vh;
-
+        height: 85vh;
 
 
 
@@ -132,7 +308,6 @@ body {
 
 
             h1 {
-
                 font-family: $fontFamily, ExtraBold;
                 font-style: normal;
                 font-weight: 800;
@@ -140,19 +315,15 @@ body {
                 line-height: 60px;
 
                 color: $textColorHeaderDark;
-
             }
 
             p {
-                font-family: $fontFamily, Regular;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 24px;
-                line-height: 150%;
-
-                color: $mainColor;
+                @include p {
+                    color: $mainColor;
+                }
             }
         }
+
 
         .form-registration {
             margin-left: auto;
@@ -231,9 +402,8 @@ body {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                //align-items: center;
-                padding: 16px 40px;
 
+                padding: 10px 40px;
                 margin-top: 33px;
 
                 width: 407px;
@@ -243,28 +413,187 @@ body {
                 box-shadow: 0px 4px 8px rgba(37, 40, 81, 0.1);
                 border-radius: 46px;
 
-                .fa-fa-arrow {
+                font-family: $fontFamily;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
 
-                    position: static;
-                    width: 24px;
-                    height: 24px;
-                    left: 274.5px;
-                    top: 12px;
+                text-align: center;
 
-                    transform: rotate(90deg);
+                color: $mainColor;
 
-                    /* Inside auto layout */
-
-                    flex: none;
-                    order: 1;
-                    flex-grow: 0;
-                    margin: 0px 16px;
-                }
+                flex: none;
+                order: 0;
+                flex-grow: 0;
             }
 
         }
     }
 }
+
+.second-screen {
+    background: #FFFFFF;
+    .wrapper {
+        height: 90vh;
+        .div-block {
+            margin: 0 auto;
+
+            .for-description {
+                padding-top: 79px;
+                margin: 0 auto;
+                height: auto;
+
+                max-width: 760px;
+                min-width: 320px;
+
+                h1 {
+                    @include h1 {
+                        color: $textColorHeaderDark;
+                    }
+                }
+
+                p {
+                    font-family: $fontFamily;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+
+                    color: $mainColor;
+
+                    height: 120px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    text-align: center;
+
+                }
+
+                .text {
+                    margin-top: 30px;
+                }
+            }
+        }
+
+
+        //Блок косой внизу второго экрана!
+        .container {
+            position: relative;
+            overflow: hidden;
+
+            .gradient-container {
+                .gradient {
+                    margin-top:5%;
+                    width: 130%;
+                    height: 760.5px;
+                    margin-left: -15%;
+
+                    transform: rotate(-5deg);
+                    background: linear-gradient(247.8deg, #126FB8 0%, #252851 100%);
+
+                    .normalize-block {
+                        transform: rotate(5deg);
+                        padding-top: 100px;
+                        h1 {
+                            @include h1 {
+                                color: $textColorHeaderLight;
+                                margin: 0 auto;
+                            }
+                        }
+                        p {
+                            @include p {
+                                padding-top: 30px;
+                                color: $textColorHeaderLight;
+                                text-align: center;
+                            }
+                        }
+
+                        .container {
+                            display: grid;
+                            @extend .extend-grid-line;
+                            margin: 15px auto;
+                            grid-template-columns: repeat(auto-fit,minmax($MaxWidthContainer/3-10+px, 1fr));
+
+                            padding-left: 5px;
+                            padding-right: 5px;
+
+
+                            justify-items: center;
+                            justify-content: center;
+
+                            .advantage {
+                                max-width: $MaxWidthContainer/3-10+px;
+
+                                h1 {
+                                    @include h1 {
+                                        color: $textColorHeaderLight;
+                                        font-weight: normal;
+                                        font-size: 24px;
+                                    }
+                                }
+                                p {
+                                    @include p {
+                                        color: $textColorHeaderLight;
+                                        font-weight: normal;
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.first-screen {
+    .wrapper {
+        display: grid;
+        @extend .extend-grid-line;
+        height: 85vh;
+
+        .for-details {
+            margin-left: 5px;
+            margin-right: 5px;
+
+            margin-top: 182px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+
+            h1 {
+                font-family: $fontFamily, ExtraBold;
+                font-style: normal;
+                font-weight: 800;
+                font-size: 48px;
+                line-height: 60px;
+
+                color: $textColorHeaderDark;
+            }
+
+            p {
+                @include p {
+                    color: $mainColor;
+                }
+            }
+        }
+
+
+        .form-registration {
+            margin-left: auto;
+            margin-right: 5px;
+
+            height: 215px;
+            width: 407px;
+            margin-top: 182px;
+
+            align-content: center;
+            justify-items: end;
+        }
+    }
+}
+
 //Тестовые блоки что бы видеть как будет делиться экран
 .test_class {
     background-color: #f7c548;

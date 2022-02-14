@@ -268,7 +268,7 @@
   width: 100%;
 }
 
-.extend-grid-line, .first-screen .wrapper, .header-content {
+.extend-grid-line, .second-screen .wrapper .container .gradient-container .gradient .normalize-block .container, .first-screen .wrapper, .header-content {
   max-width: 1022px;
   display: grid;
   margin: auto;
@@ -317,19 +317,105 @@
   display: inline;
   color: #FFFFFF;
 }
+.header-content .hamburger-menu {
+  z-index: 101;
+}
+.header-content .hamburger-menu #menu__toggle {
+  opacity: 0;
+}
+.header-content .hamburger-menu .menu__btn {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+.header-content .hamburger-menu .menu__btn > span,
+.header-content .hamburger-menu .menu__btn > span::before,
+.header-content .hamburger-menu .menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #616161;
+}
+.header-content .hamburger-menu .menu__btn > span::before {
+  content: "";
+  top: -8px;
+}
+.header-content .hamburger-menu .menu__btn > span::after {
+  content: "";
+  top: 8px;
+}
+.header-content .hamburger-menu .menu__box {
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  text-align: center;
+  background-color: #ECEFF1;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+}
+.header-content .hamburger-menu .menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.header-content .hamburger-menu .menu__item:hover {
+  background-color: #CFD8DC;
+}
+.header-content .hamburger-menu #menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+.header-content .hamburger-menu #menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+.header-content .hamburger-menu #menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+.header-content .hamburger-menu #menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  left: 0;
+}
+.header-content .hamburger-menu .menu__btn > span,
+.header-content .hamburger-menu .menu__btn > span::before,
+.header-content .hamburger-menu .menu__btn > span::after {
+  transition-duration: 0.25s;
+}
+.header-content .hamburger-menu .menu__box {
+  transition-duration: 0.25s;
+}
+.header-content .hamburger-menu .menu__item {
+  transition-duration: 0.25s;
+}
 
 body {
   background-color: #cbd5e0;
   font: "Manrope";
 }
-
 .first-screen {
   background: linear-gradient(79.95deg, rgba(18, 111, 184, 0.2) 2.62%, rgba(18, 111, 184, 0) 98.24%);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .first-screen .wrapper {
   display: grid;
-  height: 100vh;
+  height: 85vh;
 }
 .first-screen .wrapper .for-details {
   margin-left: 5px;
@@ -426,28 +512,179 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 16px 40px;
+  padding: 10px 40px;
   margin-top: 33px;
   width: 407px;
   height: 48px;
   background: #F7C548;
   box-shadow: 0px 4px 8px rgba(37, 40, 81, 0.1);
   border-radius: 46px;
-}
-.first-screen .wrapper .form-registration .button-reg .fa-fa-arrow {
-  position: static;
-  width: 24px;
-  height: 24px;
-  left: 274.5px;
-  top: 12px;
-  transform: rotate(90deg);
-  /* Inside auto layout */
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #252851;
   flex: none;
-  order: 1;
+  order: 0;
   flex-grow: 0;
-  margin: 0px 16px;
+}
+
+.second-screen {
+  background: #FFFFFF;
+}
+.second-screen .wrapper {
+  height: 90vh;
+}
+.second-screen .wrapper .div-block {
+  margin: 0 auto;
+}
+.second-screen .wrapper .div-block .for-description {
+  padding-top: 79px;
+  margin: 0 auto;
+  height: auto;
+  max-width: 760px;
+  min-width: 320px;
+}
+.second-screen .wrapper .div-block .for-description h1 {
+  font-family: "Manrope", Regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  height: 32px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  color: #126FB8;
+}
+.second-screen .wrapper .div-block .for-description p {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #252851;
+  height: 120px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+}
+.second-screen .wrapper .div-block .for-description .text {
+  margin-top: 30px;
+}
+.second-screen .wrapper .container {
+  position: relative;
+  overflow: hidden;
+}
+.second-screen .wrapper .container .gradient-container .gradient {
+  margin-top: 5%;
+  width: 130%;
+  height: 760.5px;
+  margin-left: -15%;
+  transform: rotate(-5deg);
+  background: linear-gradient(247.8deg, #126FB8 0%, #252851 100%);
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block {
+  transform: rotate(5deg);
+  padding-top: 100px;
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block h1 {
+  font-family: "Manrope", Regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  height: 32px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0 auto;
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block p {
+  font-family: "Manrope", Regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 150%;
+  padding-top: 30px;
+  color: #FFFFFF;
+  text-align: center;
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block .container {
+  display: grid;
+  margin: 15px auto;
+  grid-template-columns: repeat(auto-fit, minmax(330.6666666667px, 1fr));
+  padding-left: 5px;
+  padding-right: 5px;
+  justify-items: center;
+  justify-content: center;
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block .container .advantage {
+  max-width: 330.6666666667px;
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block .container .advantage h1 {
+  font-family: "Manrope", Regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  height: 32px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: normal;
+  font-size: 24px;
+}
+.second-screen .wrapper .container .gradient-container .gradient .normalize-block .container .advantage p {
+  font-family: "Manrope", Regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 150%;
+  color: #FFFFFF;
+  font-weight: normal;
+  font-size: 16px;
 }
 
 .test_class {
   background-color: #f7c548;
+}
+
+@media (min-width: 768px){
+  .header-content .hamburger-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 1021px){
+  .first-screen .wrapper {
+    justify-items: center;
+    align-content: center;
+    margin: 0 auto auto auto;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .first-screen .wrapper .for-details {
+    margin: 15px;
+    justify-items: center;
+  }
+  .first-screen .wrapper .form-registration {
+    height: 215px;
+    width: 407px;
+    margin: 15px;
+    align-content: center;
+    justify-items: auto;
+  }
+
+  second-screen .wrapper .div-block .for-description {
+    padding-top: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767.98px){
+  .header-content .menu-full {
+    display: none;
+  }
 }
